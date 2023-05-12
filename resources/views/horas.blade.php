@@ -6,10 +6,11 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($horario as $id)
+        @foreach($horarios as $horario)
         <tr>
-            <td>{{ $horario->Horario }}</td>
-            <td>{{ $hora->descripcion }}</td>
+            <td>{{$horario->hora_inicio }}</td>
+            <td>{{$horario->hora_termino }}</td>
+            <td>{{$horario->cupos }}</td>
         </tr>
         @endforeach
     </tbody>
