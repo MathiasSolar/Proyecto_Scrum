@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HorasController;
+use App\Http\Controllers\HorarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +20,6 @@ Route::get('/', function () {
 });
 
 Route::get('/horas', [HorasController::class, 'verHoras']);
+
+Route::get('/horario', [HorarioController::class, 'verHoras']);
 
