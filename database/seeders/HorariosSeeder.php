@@ -17,7 +17,22 @@ class HorariosSeeder extends Seeder
         DB::table('horarios')->insert([
             'hora_inicio' => '10 AM',
             'hora_termino' => '11 AM',
-            'cupos' => 2,
+            'cupos' => 30,
+        ]);
+
+        DB::table('horarios')->insert([
+            'hora_inicio' => '11 AM',
+            'hora_termino' => '12 AM',
+            'cupos' => 30,
+        ]);
+
+        DB::table('horarios')->insert([
+            'hora_inicio' => '12 AM',
+            'hora_termino' => '13 AM',
+            'cupos' => 30,
         ]);
     }
+
+
+
 }
