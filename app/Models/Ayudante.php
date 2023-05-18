@@ -16,6 +16,11 @@ class Ayudante extends Model
         'apellido_paterno',
         'apellido_materno',
         'correo_electronico',
+        'codigo_carrera',
     ];
 
+    public function carrera()
+    {
+        return $this->belongsTo(Carrera::class, 'codigo_carrera');
+    }
 }

@@ -13,7 +13,6 @@ class Reserva extends Model
     protected $fillable = [
         'rut_alumno',
         'fecha_reserva',
-        'hora_reserva',
         'hora_elegida',
     ];
 

@@ -17,6 +17,7 @@ class Alumno extends Model
         'apellido_paterno',
         'apellido_materno',
         'correo_electronico',
+        'codigo_carrera',
     ];
 
     public function reservas()
@@ -27,5 +28,10 @@ class Alumno extends Model
     public function asistencias()
     {
         return $this->hasMany(Asistencia::class, 'rut_alumno');
+    }
+
+    public function carrera()
+    {
+        return $this->belongsTo(Carrera::class, 'codigo_carrera');
     }
 }

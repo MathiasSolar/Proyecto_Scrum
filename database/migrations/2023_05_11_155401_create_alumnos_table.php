@@ -14,7 +14,10 @@ class CreateAlumnosTable extends Migration
             $table->string('apellido_paterno')->nullable();
             $table->string('apellido_materno')->nullable();
             $table->string('correo_electronico')->unique();
+            $table->unsignedBigInteger('codigo_carrera');
             $table->timestamps();
+
+            $table->foreign('codigo_carrera')->references('codigo_carrera')->on('carreras');
         });
     }
 

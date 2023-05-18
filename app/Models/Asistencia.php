@@ -13,7 +13,7 @@ class Asistencia extends Model
     protected $fillable = [
         'id_reserva',
         'rut_alumno',
-        'hora_reservada',
+        'hora_elegida',
     ];
 
     public function reserva()
