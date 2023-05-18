@@ -1,35 +1,32 @@
 <?php
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Reserva extends Model
 {
-    use HasFactory;
-
     protected $table = 'reservas';
 
     protected $fillable = [
-        'id_horario',
-        'rut_alumno',
-        'rut_ayudante',
         'fecha_reserva',
         'asistencia',
+        'horarios_id',
+        'alumnos_rut',
+        'ayudantes_rut',
     ];
-
-    public function alumno()
-    {
-        return $this->belongsTo(Alumno::class,'rut_alumno');
-    }
 
     public function horario()
     {
-        return $this->belongsTo(Horario::class,'id_horario');
+        return $this->belongsTo(Horario::class, 'horarios_id');
+    }
+
+    public function alumno()
+    {
+        return $this->belongsTo(Alumno::class, 'alumnos_rut');
     }
 
     public function ayudante()
     {
-        return $this->belongsTo(Ayudante::class,'rut_ayudante');
+        return $this->belongsTo(Ayudante::class, 'ayudantes_rut');
     }
 }

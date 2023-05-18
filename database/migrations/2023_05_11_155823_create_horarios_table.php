@@ -13,7 +13,7 @@ class CreateHorariosTable extends Migration
             $table->time('hora_inicio');
             $table->time('hora_termino');
             $table->string('estado')->nullable();
-            $table->integer('cupos');
+            $table->integer('cupos_disponibles')->default(30);
             $table->timestamps();
         });
     }

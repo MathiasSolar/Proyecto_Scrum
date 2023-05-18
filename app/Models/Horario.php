@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,14 +14,13 @@ class Horario extends Model
     protected $fillable = [
         'fecha',
         'hora_inicio',
-        'hora_fin',
+        'hora_termino',
         'estado',
-        'cupos',
+        'cupos_disponibles',
     ];
 
     public function reservas()
     {
-        return $this->belongsTo(Reserva::class,'id_reserva');
+        return $this->hasMany(Reserva::class, 'horarios_id');
     }
-
 }

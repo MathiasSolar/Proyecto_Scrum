@@ -9,16 +9,16 @@ class CreateReservasTable extends Migration
     {
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('rut_alumno');
+            $table->unsignedBigInteger('alumnos_rut');
             $table->date('fecha_reserva');
-            $table->string('asistencia')->nullable();
-            $table->unsignedBigInteger('horario_id');
-            $table->unsignedBigInteger('rut_ayudante');
+            $table->boolean('asistencia')->nullable();
+            $table->unsignedBigInteger('horarios_id');
+            $table->unsignedBigInteger('ayudantes_rut');
             $table->timestamps();
 
-            $table->foreign('rut_alumno')->references('rut')->on('alumnos');
-            $table->foreign('rut_ayudante')->references('rut')->on('ayudantes');
-            $table->foreign('horario_id')->references('id')->on('horarios');
+            $table->foreign('alumnos_rut')->references('rut')->on('alumnos')->onDelete('cascade');
+            $table->foreign('ayudantes_rut')->references('rut')->on('ayudantes')->onDelete('cascade');
+            $table->foreign('horarios_id')->references('id')->on('horarios')->onDelete('cascade');
         });
     }
 

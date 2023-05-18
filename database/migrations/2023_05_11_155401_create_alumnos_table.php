@@ -9,15 +9,14 @@ class CreateAlumnosTable extends Migration
     public function up()
     {
         Schema::create('alumnos', function (Blueprint $table) {
-            $table->string('rut')->unique();
+            $table->string('rut')->primary();
             $table->string('nombre');
-            $table->string('apellido_paterno')->nullable();
-            $table->string('apellido_materno')->nullable();
+            $table->string('apellido')->nullable();
             $table->string('correo_electronico')->unique();
-            $table->unsignedBigInteger('codigo_carrera');
+            $table->unsignedBigInteger('carreras_codigo_carrera');
             $table->timestamps();
 
-            $table->foreign('codigo_carrera')->references('codigo_carrera')->on('carreras');
+            $table->foreign('carreras_codigo_carrera')->references('codigo_carrera')->on('carreras')->onDelete('cascade');
         });
     }
 
