@@ -18,4 +18,9 @@ class Horario extends Model
         'cupos',
     ];
 
+    public function reservas()
+    {
+        return $this->belongsTo(Reserva::class,'id_reserva');
+    }
+
 }

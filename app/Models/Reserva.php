@@ -11,18 +11,25 @@ class Reserva extends Model
     protected $table = 'reservas';
 
     protected $fillable = [
+        'id_horario',
         'rut_alumno',
+        'rut_ayudante',
         'fecha_reserva',
-        'hora_elegida',
+        'asistencia',
     ];
 
     public function alumno()
     {
-        return $this->belongsTo(Alumno::class, 'rut_alumno');
+        return $this->belongsTo(Alumno::class,'rut_alumno');
     }
 
-    public function asistencias()
+    public function horario()
     {
-        return $this->hasMany(Asistencia::class, 'id_reserva');
+        return $this->belongsTo(Horario::class,'id_horario');
+    }
+
+    public function ayudante()
+    {
+        return $this->belongsTo(Ayudante::class,'rut_ayudante');
     }
 }

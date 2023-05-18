@@ -19,8 +19,14 @@ class Ayudante extends Model
         'codigo_carrera',
     ];
 
+    public function reservas()
+    {
+        return $this->hasMany(Reserva::class, 'id_reserva');
+    }
+
     public function carrera()
     {
         return $this->belongsTo(Carrera::class, 'codigo_carrera');
     }
+
 }

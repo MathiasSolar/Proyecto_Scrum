@@ -25,11 +25,6 @@ class Alumno extends Model
         return $this->hasMany(Reserva::class, 'rut_alumno');
     }
 
-    public function asistencias()
-    {
-        return $this->hasMany(Asistencia::class, 'rut_alumno');
-    }
-
     public function carrera()
     {
         return $this->belongsTo(Carrera::class, 'codigo_carrera');

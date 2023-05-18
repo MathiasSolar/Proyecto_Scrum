@@ -9,13 +9,13 @@ class Carrera extends Model
         'nombre_carrera',
     ];
 
-    public function usuarios()
+    public function alumnos()
     {
-        return $this->hasMany(Alumno::class, 'codigo_carrera');
+        return $this->hasMany(Alumno::class,'rut_alumno');
     }
 
-    public function instructores()
+    public function ayudantes()
     {
-        return $this->hasMany(Ayudante::class, 'codigo_carrera');
+        return $this->hasMany(Ayudante::class,'rut_ayudante');
     }
 }
