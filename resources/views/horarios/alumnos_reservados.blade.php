@@ -3,10 +3,10 @@
 @section('content')
     <h1>Alumnos Reservados - {{ $horario->fecha }} - {{ $horario->hora_inicio }} a {{ $horario->hora_termino }}</h1>
 
-    @if (count($alumnos) > 0)
+    @if (count($reservas) > 0)
         <ul class="list-group">
-            @foreach ($alumnos as $alumno)
-                <li class="list-group-item">{{ $alumno->alumno->nombre }} {{ $alumno->alumno->apellido }} ({{ $alumno->alumno->correo_electronico }})</li>
+            @foreach ($reservas as $reserva)
+            <li class="list-group-item">{{ $reserva->alumnos_rut }}</li>
             @endforeach
         </ul>
     @else
