@@ -59,6 +59,15 @@ class HorariosSeeder extends Seeder
             'codigo_carrera'=>15462,
             'nombre_carrera'=>'Ingeniería en Informática',
         ]);
+
+        DB::table('ayudantes')->insert([
+            'rut'=>"19128143-1",
+            'nombre'=>'Mathias',
+            'apellido'=>"Solar",
+            'constraseña'=>"123",
+            'correo_electronico'=>"mathiassolar@gmail.com",
+            'codigo_carrera'=>15462,
+        ]);
     }
 
 
