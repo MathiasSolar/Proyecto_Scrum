@@ -10,20 +10,24 @@
   <div class="container-fluid">
     <a class="navbar-brand" style="color: #ffffff; "><img src="{{ asset('img/logousm.png') }}" class="img-fluid" alt="usm" width="90" height="90"> Universidad Técnica Federico Santa María</a>
     <form class="d-flex" role="search">
-      <button  href="{{ route('horarios.index') }}" type="button"  class="btn btn-success btn-lg">Reservar</button>
-      <button type="button" class="btn btn-outline-light btn-lg">Reservar</button>
+      <div>
+      <a href="{{ route('horarios.index') }}" class="btn btn-outline-light btn-lg">Reservar</a>
+      </div>
+    
     </form>
   </div>
 </nav>
+
+
 <style>
   body {
       background-image: url("{{ asset('img/USM.jpg') }}");
       background-repeat: no-repeat;
       background-size: cover;
+      background-position: center;
+      height: 100vh;
   }
 </style>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
