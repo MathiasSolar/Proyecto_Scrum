@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Alumno;
+use App\Models\Carrera;
 use App\Models\Horario;
 use App\Models\Reserva;
 use Illuminate\Http\Request;
@@ -18,6 +19,9 @@ class HorarioController extends Controller
     public function reservar(Horario $horario)
     {
         return view('horarios.reservar', compact('horario'));
+        
+        $carreras = Carrera::all();
+        return view('horarios.reservar', compact('horario', 'carreras'));
     }
 
     // public function guardarReserva(Request $request, Horario $horario)
@@ -29,14 +33,17 @@ class HorarioController extends Controller
             'email' => 'required|email',
         ]);
 
-        $alumno = new Alumno;
-        $alumno->rut = $request->get('rut');
-        $alumno->nombre = $request->get('nombre');
-        $alumno->apellido = $request->get('apellido');
-        $alumno->correo_electronico = $request->get('email');
-        $alumno->carreras_codigo_carrera = $request->get('carrera');
+        $alumno = Alumno::where('rut', $request->get('rut'))->first();
 
-        $alumno->save();
+        if (!$alumno) {
+            $alumno = new Alumno;
+            $alumno->rut = $request->get('rut');
+            $alumno->nombre = $request->get('nombre');
+            $alumno->apellido = $request->get('apellido');
+            $alumno->correo_electronico = $request->get('email');
+            $alumno->carreras_codigo_carrera = $request->get('carrera');
+            $alumno->save();
+        }
 
         $reserva = new Reserva;
         $reserva->fecha_reserva = "";
