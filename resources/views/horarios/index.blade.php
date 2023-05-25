@@ -8,7 +8,7 @@
             @foreach ($horarios as $horario)
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        {{ $horario->fecha }} - {{ $horario->hora_inicio }} a {{ $horario->hora_termino }}
+                    {{ $horario->fecha }} - {{ Carbon\Carbon::parse($horario->hora_inicio)->format('H:i') }} a {{ Carbon\Carbon::parse($horario->hora_termino)->format('H:i') }}
                     </div>
                     <div class="d-flex align-items-center ml-auto">
                         <span class="badge badge-primary mr-2">{{ $horario->cupos_disponibles }}</span>
