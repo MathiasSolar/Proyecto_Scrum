@@ -26,10 +26,17 @@
         </div>
 
         <div class="form-group">
-            <label for="carrera">Carerra:</label>
-            <input type="text" name="carrera" class="form-control" required>
+            <label for="carrera">Carrera:</label>
+            <select name="carrera" class="form-control" required>
+                <option value="">Seleccionar carrera</option>
+                @foreach ($carreras as $carrera)
+                    <option value="{{ $carrera->codigo_carrera }}">{{ $carrera->nombre_carrera }}</option>
+                @endforeach
+            </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Reservar</button>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">Reservar</button>
+        </div>
     </form>
 @endsection

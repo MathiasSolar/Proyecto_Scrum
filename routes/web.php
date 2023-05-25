@@ -23,3 +23,4 @@ Route::get('/horarios', [HorarioController::class, 'index'])->name('horarios.ind
 Route::get('/horarios/{horario}/reservar', [HorarioController::class, 'reservar'])->name('horarios.reservar');
 Route::post('/horarios/{horario}/guardar-reserva', [HorarioController::class, 'guardarReserva'])->name('horarios.guardarReserva');
 Route::get('/horarios/{horario}/alumnos-reservados', [HorarioController::class, 'alumnosReservados'])->name('horarios.alumnosReservados');
+Route::get('/horarios/generar', [HorarioController::class,'generarHorarios'])->name('horarios.generar');

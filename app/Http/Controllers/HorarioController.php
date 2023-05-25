@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use App\Models\Alumno;
 use App\Models\Carrera;
 use App\Models\Horario;
@@ -13,13 +14,15 @@ class HorarioController extends Controller
     public function index()
     {
         $horarios = Horario::all();
+        $horarios->transform(function ($horario) {
+            $horario->fecha = Carbon::parse($horario->fecha)->format('d/m/Y');
+            return $horario;
+        });
         return view('horarios.index', compact('horarios'));
     }
 
     public function reservar(Horario $horario)
-    {
-        return view('horarios.reservar', compact('horario'));
-        
+    {   
         $carreras = Carrera::all();
         return view('horarios.reservar', compact('horario', 'carreras'));
     }
@@ -63,4 +66,31 @@ class HorarioController extends Controller
 
         return view('horarios.alumnos_reservados', compact('horario', 'reservas'));
     }
+
+    public function generarHorarios()
+    {
+        $horariosExistentes = Horario::count();
+
+        if ($horariosExistentes === 0) {
+            $inicio = Carbon::parse('09:00'); // Hora de inicio del primer horario
+            $duracion = 60; // Duración de cada horario en minutos
+
+            $fecha = Carbon::tomorrow()->toDateString(); // Fecha de mañana
+
+            for ($i = 0; $i < 10; $i++) {
+                $horario = new Horario;
+                $horario->fecha = $fecha;
+                $horario->hora_inicio = $inicio->toTimeString();
+                $horario->hora_termino = $inicio->addMinutes($duracion)->toTimeString();
+                $horario->estado = 'disponible';
+                $horario->cupos_disponibles = 30;
+
+                $horario->save();
+            }
+        }
+
+        return redirect()->route('horarios.index');
+    }
+
+
 }

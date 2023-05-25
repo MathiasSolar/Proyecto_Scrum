@@ -14,26 +14,26 @@ class HorariosSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('horarios')->insert([
-            'fecha' => '22/04/2023',
-            'hora_inicio' => '10 AM',
-            'hora_termino' => '11 AM',
-            'cupos_disponibles' => 30,
-        ]);
-
-        DB::table('horarios')->insert([
-            'fecha' => '22/04/2023',
-            'hora_inicio' => '11 AM',
-            'hora_termino' => '12 AM',
-            'cupos_disponibles' => 30,
-        ]);
-
-        DB::table('horarios')->insert([
-            'fecha' => '22/04/2023',
-            'hora_inicio' => '12 AM',
-            'hora_termino' => '13 AM',
-            'cupos_disponibles' => 30,
-        ]);
+        //DB::table('horarios')->insert([
+        //    'fecha' => '22/04/2023',
+        //    'hora_inicio' => '10 AM',
+        //    'hora_termino' => '11 AM',
+        //    'cupos_disponibles' => 30,
+        //]);
+//
+        //DB::table('horarios')->insert([
+        //    'fecha' => '22/04/2023',
+        //    'hora_inicio' => '11 AM',
+        //    'hora_termino' => '12 AM',
+        //    'cupos_disponibles' => 30,
+        //]);
+//
+        //DB::table('horarios')->insert([
+        //    'fecha' => '22/04/2023',
+        //    'hora_inicio' => '12 AM',
+        //    'hora_termino' => '13 AM',
+        //    'cupos_disponibles' => 30,
+        //]);
 
         DB::table('carreras')->insert([
             'codigo_carrera'=>15180,
