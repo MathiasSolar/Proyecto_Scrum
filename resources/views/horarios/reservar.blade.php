@@ -3,22 +3,21 @@
 @section('content')
     <h1>Reservar Horario</h1>
 
-
     <form action="{{ route('horarios.guardarReserva', $horario->id) }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="rut">Rut:</label>
-            <input type="text" name="rut" id="rut"  placeholder="Ingrese el RUT del alumno con punto y guion" class="form-control" required >
+            <input type="text" name="rut" id="rut" placeholder="Ingrese el RUT del alumno con punto y guion" class="form-control" required>
         </div>
 
         <div class="form-group">
             <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" id="nombre" class="form-control" required  >
+            <input type="text" name="nombre" id="nombre" class="form-control" required>
         </div>
 
         <div class="form-group">
             <label for="apellido">Apellido:</label>
-            <input type="text" name="apellido" id="apellido" class="form-control" required >
+            <input type="text" name="apellido" id="apellido" class="form-control" required>
         </div>
 
         <div class="form-group">
@@ -41,38 +40,36 @@
         </div>
     </form>
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#rut').on('blur', function() {
-            var rut = $(this).val();
+    <script>
+        $(document).ready(function() {
+            $('#rut').on('blur', function() {
+                var rut = $(this).val();
 
-            $.ajax({
-                url: "{{ route('buscarAlumno') }}",
-                type: "POST",
-                data: {
-                    '_token': "{{ csrf_token() }}",
-                    'rut': rut
-                },
-                success: function(response) {
-                    if (response.mensaje) {
-                        // El alumno no está registrado
-                        alert(response.mensaje);
-                    } else {
-                        // El alumno está registrado, llenar los campos
-                        $('#nombre').val(response.nombre);
-                        $('#apellido').val(response.apellido);
-                        $('#email').val(response.correo);
-                        $('#carrera').val(response.carrera);
+                $.ajax({
+                    url: "{{ route('buscarAlumno') }}",
+                    type: "POST",
+                    data: {
+                        '_token': "{{ csrf_token() }}",
+                        'rut': rut
+                    },
+                    success: function(response) {
+                        if (response.mensaje) {
+                            // El alumno no está registrado
+                            alert(response.mensaje);
+                        } else {
+                            // El alumno está registrado, llenar los campos
+                            $('#nombre').val(response.nombre);
+                            $('#apellido').val(response.apellido);
+                            $('#email').val(response.correo);
+                            $('#carrera').val(response.carrera);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
                     }
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
+                });
             });
         });
-    });
-</script>
-
+    </script>
 @endsection

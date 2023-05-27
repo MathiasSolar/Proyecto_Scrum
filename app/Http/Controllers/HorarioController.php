@@ -106,8 +106,8 @@ class HorarioController extends Controller
             return response()->json([
                 'nombre' => $alumno->nombre,
                 'apellido' => $alumno->apellido,
-                'correo' => $alumno->correo,
-                'carrera' => $alumno->carrera,
+                'correo' => $alumno->correo_electronico,
+                'carrera' => $alumno->carreras_codigo_carrera,
             ]);
         } else {
             return response()->json(['mensaje' => 'Alumno no registrado']);
