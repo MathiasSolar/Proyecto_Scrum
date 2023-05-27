@@ -8,15 +8,13 @@
             @foreach ($horarios as $horario)
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                    {{ $horario->fecha }} - {{ Carbon\Carbon::parse($horario->hora_inicio)->format('H:i') }} a {{ Carbon\Carbon::parse($horario->hora_termino)->format('H:i') }}
+                        {{ $horario->fecha }} - {{ Carbon\Carbon::parse($horario->hora_inicio)->format('H:i') }} a {{ Carbon\Carbon::parse($horario->hora_termino)->format('H:i') }}
+                        <span class="badge text-bg-primary">{{ $horario->cupos_disponibles }}</span>
                     </div>
-                    <div class="d-flex align-items-center ml-auto">
-                        <span class="badge badge-primary mr-2">{{ $horario->cupos_disponibles }}</span>
                         <div>
                             <a href="{{ route('horarios.alumnosReservados', $horario->id) }}" class="btn btn-primary">Ver Alumnos</a>
                             <a href="{{ route('horarios.reservar', $horario->id) }}" class="btn btn-primary">Reservar</a>
                         </div>
-                    </div>
                 </li>
             @endforeach
         </ul>
