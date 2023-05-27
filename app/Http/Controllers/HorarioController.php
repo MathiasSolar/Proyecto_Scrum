@@ -8,6 +8,8 @@ use App\Models\Carrera;
 use App\Models\Horario;
 use App\Models\Reserva;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class HorarioController extends Controller
 {
@@ -93,4 +95,27 @@ class HorarioController extends Controller
     }
 
 
+
+    public function buscarAlumno(Request $request)
+    {
+        $rut = $request->input('rut');
+
+        $alumno = Alumno::where('rut', $rut)->first();
+
+        if ($alumno) {
+            return response()->json([
+                'nombre' => $alumno->nombre,
+                'apellido' => $alumno->apellido,
+                'correo' => $alumno->correo,
+                'carrera' => $alumno->carrera,
+            ]);
+        } else {
+            return response()->json(['mensaje' => 'Alumno no registrado']);
+        }
+    }   
+
+
+
 }
+
+
