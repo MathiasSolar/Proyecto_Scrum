@@ -7,7 +7,7 @@
         <ul class="list-group">
             @foreach ($reservas as $reserva)
                 <li class="list-group-item">
-                    <strong>Rut:</strong> {{ $reserva->Alumno->rut }} <br>
+                    <strong>Rut:</strong> {{ $reserva->alumnos_rut }} <br>
                     <strong>Nombre:</strong> {{ $reserva->Alumno->nombre }} <br>
                     <strong>Apellido:</strong> {{ $reserva->Alumno->apellido }} <br>
                     <strong>Correo Electrónico:</strong> {{ $reserva->Alumno->correo_electronico }} <br>

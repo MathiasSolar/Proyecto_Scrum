@@ -110,7 +110,7 @@ class HorarioController extends Controller
                 'carrera' => $alumno->carreras_codigo_carrera,
             ]);
         } else {
-            return response()->json(['mensaje' => 'Alumno no registrado']);
+            return response()->json([]);
         }
     }   
 
