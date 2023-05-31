@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Reservar Horario</h1>
+    <center><h1>Reservar Horario</h1></center>
 
     <form action="{{ route('horarios.guardarReserva', $horario->id) }}" method="POST">
         @csrf
