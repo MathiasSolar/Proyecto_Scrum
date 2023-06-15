@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+
 
 class Alumno extends Model
 {
@@ -27,4 +30,11 @@ class Alumno extends Model
     {
         return $this->hasMany(Reserva::class, 'alumnos_rut');
     }
+}
+
+class Alumnotest extends Model
+{
+    use HasFactory;
+
+    // Resto del código de tu modelo
 }
