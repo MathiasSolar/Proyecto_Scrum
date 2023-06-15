@@ -1,21 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Horarios Disponibles</h1>
+    <center><h1>Horarios Disponibles</h1> </center>
 
     @if (count($horarios) > 0)
         <ul class="list-group">
             @foreach ($horarios as $horario)
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        {{ $horario->fecha }} - {{ Carbon\Carbon::parse($horario->hora_inicio)->format('H:i') }} a {{ Carbon\Carbon::parse($horario->hora_termino)->format('H:i') }}
-                        <span class="badge text-bg-primary">{{ $horario->cupos_disponibles }}</span>
-                    </div>
+                @if ($horario->cupos_disponibles >= 20 )
+                    <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
                         <div>
-                            <a href="{{ route('horarios.alumnosReservados', $horario->id) }}" class="btn btn-primary">Ver Alumnos</a>
-                            <a href="{{ route('horarios.reservar', $horario->id) }}" class="btn btn-primary">Reservar</a>
+                            {{ $horario->fecha }} - {{ Carbon\Carbon::parse($horario->hora_inicio)->format('H:i') }} a {{ Carbon\Carbon::parse($horario->hora_termino)->format('H:i') }}
+                            <span class="badge text-bg-light">{{ $horario->cupos_disponibles }}</span>
                         </div>
-                </li>
+                            <div>
+                                <a href="{{ route('horarios.alumnosReservados', $horario->id) }}" class="btn btn-light">Ver Inscritos</a>
+                                <a href="{{ route('horarios.reservar', $horario->id) }}" class="btn btn-light">Reservar</a>
+                            </div>
+                @elseif ($horario->cupos_disponibles >= 10)
+                <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
+                        <div>
+                            {{ $horario->fecha }} - {{ Carbon\Carbon::parse($horario->hora_inicio)->format('H:i') }} a {{ Carbon\Carbon::parse($horario->hora_termino)->format('H:i') }}
+                            <span class="badge text-bg-light">{{ $horario->cupos_disponibles }}</span>
+                        </div>
+                            <div>
+                                <a href="{{ route('horarios.alumnosReservados', $horario->id) }}" class="btn btn-light">Ver Inscritos</a>
+                                <a href="{{ route('horarios.reservar', $horario->id) }}" class="btn btn-light">Reservar</a>
+                            </div>
+
+                @elseif ($horario->cupos_disponibles <= 10)
+                <li class="list-group-item list-group-item-danger d-flex justify-content-between align-items-center">
+                        <div>
+                            {{ $horario->fecha }} - {{ Carbon\Carbon::parse($horario->hora_inicio)->format('H:i') }} a {{ Carbon\Carbon::parse($horario->hora_termino)->format('H:i') }}
+                            <span class="badge text-bg-light">{{ $horario->cupos_disponibles }}</span>
+                        </div>
+                            <div>
+                                <a href="{{ route('horarios.alumnosReservados', $horario->id) }}" class="btn btn-light">Ver Inscritos</a>
+                                <a href="{{ route('horarios.reservar', $horario->id) }}" class="btn btn-light">Reservar</a>
+                            </div>
+                    </li>
+                @endif
             @endforeach
         </ul>
     @else

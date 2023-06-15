@@ -55,7 +55,7 @@ class HorarioController extends Controller
         $reserva->asistencia = "";
         $reserva->horarios_id = $idHorario;
         $reserva->alumnos_rut = $request->get('rut');
-        $reserva->ayudantes_rut = "19128143-1";
+        $reserva->ayudantes_rut = "11.111.111-1";
 
         $reserva->save();
 
@@ -110,7 +110,7 @@ class HorarioController extends Controller
                 'carrera' => $alumno->carreras_codigo_carrera,
             ]);
         } else {
-            return response()->json(['mensaje' => 'Alumno no registrado']);
+            return response()->json([]);
         }
     }   
 
