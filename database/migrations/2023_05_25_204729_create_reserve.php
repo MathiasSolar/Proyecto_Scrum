@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateReserveTrigger extends Migration
@@ -12,7 +13,7 @@ class CreateReserveTrigger extends Migration
      */
     public function up()
     {
-        DB::unprepared('
+        DB::statement('
             CREATE TRIGGER actualizar_cupos_disponibles 
             AFTER INSERT ON reservas
             BEGIN
@@ -30,6 +31,7 @@ class CreateReserveTrigger extends Migration
      */
     public function down()
     {
-        DB::unprepared('DROP TRIGGER IF EXISTS actualizar_cupos_disponibles');
+        DB::statement('DROP TRIGGER IF EXISTS actualizar_cupos_disponibles');
     }
 }
+
