@@ -114,7 +114,48 @@ class HorarioController extends Controller
         }
     }   
 
+    public function cambiarAsistencia($reservaId, $estado)
+    {
+        $reserva = Reserva::findOrFail($reservaId);
 
+        // Verificar si el estado de asistencia es válido
+        if ($estado === 'ausente' || $estado === 'presente') {
+            $reserva->asistencia = $estado;
+            $reserva->save();
+
+            // Redireccionar a la página de alumnos reservados o realizar alguna otra acción
+            return redirect()->back()->with('success', 'El estado de asistencia se ha actualizado correctamente.');
+        } else {
+            // Estado de asistencia no válido
+            return redirect()->back()->with('error', 'Estado de asistencia no válido.');
+        }
+    }
+        public function modificarReserva($reservaId)
+    {
+        $reserva = Reserva::findOrFail($reservaId);
+        $carreras = Carrera::all(); // Obtener todas las carreras (o tu lógica para obtener las carreras)
+    
+        return view('horarios.modificar_reserva', compact('reserva', 'carreras'));
+        
+    }
+
+        public function actualizarReserva(Request $request, $reservaId)
+    {
+        $reserva = Reserva::findOrFail($reservaId);
+        $reserva->asistencia = $request->input('asistencia');
+    
+        $alumno = Alumno::where('rut', $request->input('rut'))->first();
+        if ($alumno) {
+            $reserva->alumnos_rut = $request->input('rut');
+            $reserva->save();
+        }
+    
+        return redirect()->route('horarios.alumnosReservados', $reserva->horarios_id)
+            ->with('success', 'Reserva actualizada exitosamente');
+    }
+    
+
+    
 
 }
 

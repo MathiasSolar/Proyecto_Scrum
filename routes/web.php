@@ -25,3 +25,7 @@ Route::post('/horarios/{horario}/guardar-reserva', [HorarioController::class, 'g
 Route::get('/horarios/{horario}/alumnos-reservados', [HorarioController::class, 'alumnosReservados'])->name('horarios.alumnosReservados');
 Route::get('/horarios/generar', [HorarioController::class,'generarHorarios'])->name('horarios.generar');
 Route::post('/buscar-alumno', [HorarioController::class, 'buscarAlumno'])->name('buscarAlumno');
+Route::post('/horarios/reservas/{reservaId}/cambiar-asistencia/{estado}', [HorarioController::class, 'cambiarAsistencia'])->name('horarios.cambiarAsistencia');
+Route::get('/horarios/reservas/{reservaId}/modificar', [HorarioController::class, 'modificarReserva'])->name('horarios.modificarReserva');
+Route::get('/horarios/{reserva}/modificar-reserva', [HorarioController::class, 'modificarReserva'])->name('horarios.modificarReserva');
+Route::put('/horarios/{reserva}/actualizar-reserva', [HorarioController::class, 'actualizarReserva'])->name('horarios.actualizarReserva');
