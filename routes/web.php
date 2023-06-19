@@ -29,3 +29,6 @@ Route::post('/horarios/reservas/{reservaId}/cambiar-asistencia/{estado}', [Horar
 Route::get('/horarios/reservas/{reservaId}/modificar', [HorarioController::class, 'modificarReserva'])->name('horarios.modificarReserva');
 Route::get('/horarios/{reserva}/modificar-reserva', [HorarioController::class, 'modificarReserva'])->name('horarios.modificarReserva');
 Route::put('/horarios/{reserva}/actualizar-reserva', [HorarioController::class, 'actualizarReserva'])->name('horarios.actualizarReserva');
+Route::delete('/horarios/eliminar-reserva/{reserva}', [HorarioController::class, 'eliminarReserva'])->name('horarios.eliminarReserva');
+
+

@@ -155,7 +155,17 @@ class HorarioController extends Controller
     }
     
 
-    
+
+    public function eliminarReserva(Reserva $reserva)
+    {
+        // Aquí puedes agregar cualquier lógica adicional antes de eliminar la reserva
+        $reserva->delete();
+
+        // Puedes redirigir a una página de éxito o realizar cualquier otra acción necesaria
+        return redirect()->back()->with('success', 'La inscripción ha sido eliminada exitosamente.');
+    }
+
+
 
 }
 

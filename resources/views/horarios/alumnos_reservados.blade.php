@@ -20,11 +20,16 @@
                         <span class="badge bg-danger">Ausente</span>
                     @endif
 
-                    <div class="mt-2">
+                    <div class="mt-2 d-flex justify-content-between">
                         <form action="{{ route('horarios.cambiarAsistencia', ['reservaId' => $reserva->id, 'estado' => ($reserva->asistencia === 'presente' ? 'ausente' : 'presente')]) }}" method="POST">
                             @csrf
                             <a href="{{ route('horarios.modificarReserva', $reserva->id) }}" class="btn btn-primary">Modificar</a>
+                        </form>
 
+                        <form action="{{ route('horarios.eliminarReserva', $reserva->id) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar esta inscripción?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Borrar Inscripción</button>
                         </form>
                     </div>
                 </li>
@@ -34,3 +39,4 @@
         <p>No hay alumnos reservados para este horario.</p>
     @endif
 @endsection
+
