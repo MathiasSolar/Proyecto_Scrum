@@ -167,6 +167,18 @@ class HorarioController extends Controller
 
 
 
+public function buscar(Request $request)
+{
+    $hora = Carbon::createFromFormat('H:i', $request->input('hora'))->format('H:i:s');
+
+    $horarios = Horario::where('hora_inicio', '<=', $hora)
+                        ->where('hora_termino', '>=', $hora)
+                        ->get();
+
+    return view('horarios.buscar', compact('horarios'));
+}
+
+
 }
 
 
