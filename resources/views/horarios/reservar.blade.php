@@ -65,8 +65,8 @@
                 error: function(xhr, status, error) {
                     console.error(error);
                 }
-             });
-         });
+            });
         });
+    });
     </script>
 @endsection

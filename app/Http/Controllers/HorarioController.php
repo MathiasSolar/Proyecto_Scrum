@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -9,7 +10,7 @@ use App\Models\Horario;
 use App\Models\Reserva;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Http\Response;
 
 class HorarioController extends Controller
 {
@@ -65,7 +66,6 @@ class HorarioController extends Controller
     public function alumnosReservados(Horario $horario)
     {
         $reservas = $horario->reservas()->with('alumno')->get();
-
         return view('horarios.alumnos_reservados', compact('horario', 'reservas'));
     }
 
@@ -76,9 +76,7 @@ class HorarioController extends Controller
         if ($horariosExistentes === 0) {
             $inicio = Carbon::parse('09:00'); // Hora de inicio del primer horario
             $duracion = 60; // Duración de cada horario en minutos
-
             $fecha = Carbon::tomorrow()->toDateString(); // Fecha de mañana
-
             for ($i = 0; $i < 10; $i++) {
                 $horario = new Horario;
                 $horario->fecha = $fecha;
@@ -86,22 +84,16 @@ class HorarioController extends Controller
                 $horario->hora_termino = $inicio->addMinutes($duracion)->toTimeString();
                 $horario->estado = 'disponible';
                 $horario->cupos_disponibles = 30;
-
                 $horario->save();
             }
         }
-
         return redirect()->route('horarios.index');
     }
-
-
 
     public function buscarAlumno(Request $request)
     {
         $rut = $request->input('rut');
-
         $alumno = Alumno::where('rut', $rut)->first();
-
         if ($alumno) {
             return response()->json([
                 'nombre' => $alumno->nombre,
@@ -112,17 +104,15 @@ class HorarioController extends Controller
         } else {
             return response()->json([]);
         }
-    }   
+    }
 
     public function cambiarAsistencia($reservaId, $estado)
     {
         $reserva = Reserva::findOrFail($reservaId);
-
         // Verificar si el estado de asistencia es válido
         if ($estado === 'ausente' || $estado === 'presente') {
             $reserva->asistencia = $estado;
             $reserva->save();
-
             // Redireccionar a la página de alumnos reservados o realizar alguna otra acción
             return redirect()->back()->with('success', 'El estado de asistencia se ha actualizado correctamente.');
         } else {
@@ -130,55 +120,52 @@ class HorarioController extends Controller
             return redirect()->back()->with('error', 'Estado de asistencia no válido.');
         }
     }
-        public function modificarReserva($reservaId)
+
+    public function modificarReserva($reservaId)
     {
         $reserva = Reserva::findOrFail($reservaId);
         $carreras = Carrera::all(); // Obtener todas las carreras (o tu lógica para obtener las carreras)
-    
         return view('horarios.modificar_reserva', compact('reserva', 'carreras'));
-        
     }
 
-        public function actualizarReserva(Request $request, $reservaId)
+    public function actualizarReserva(Request $request, $reservaId)
     {
         $reserva = Reserva::findOrFail($reservaId);
         $reserva->asistencia = $request->input('asistencia');
-    
         $alumno = Alumno::where('rut', $request->input('rut'))->first();
         if ($alumno) {
             $reserva->alumnos_rut = $request->input('rut');
             $reserva->save();
         }
-    
+
         return redirect()->route('horarios.alumnosReservados', $reserva->horarios_id)
             ->with('success', 'Reserva actualizada exitosamente');
     }
-    
-
 
     public function eliminarReserva(Reserva $reserva)
     {
-        // Aquí puedes agregar cualquier lógica adicional antes de eliminar la reserva
         $reserva->delete();
-
-        // Puedes redirigir a una página de éxito o realizar cualquier otra acción necesaria
         return redirect()->back()->with('success', 'La inscripción ha sido eliminada exitosamente.');
     }
 
+    public function buscar(Request $request)
+    {
+        $hora = Carbon::createFromFormat('H:i', $request->input('hora'))->format('H:i:s');
+        $horarios = Horario::where('hora_inicio', '<=', $hora)
+            ->where('hora_termino', '>=', $hora)
+            ->get();
+        return view('horarios.buscar', compact('horarios'));
+    }
 
+    public function filtrarAlumnos(Request $request)
+    {
+        $rut = $request->input('rut');
 
-public function buscar(Request $request)
-{
-    $hora = Carbon::createFromFormat('H:i', $request->input('hora'))->format('H:i:s');
+        // Obtener los alumnos filtrados por rut
+        $alumnosFiltrados = Alumno::where('rut', 'like', '%' . $rut . '%')->get();
 
-    $horarios = Horario::where('hora_inicio', '<=', $hora)
-                        ->where('hora_termino', '>=', $hora)
-                        ->get();
-
-    return view('horarios.buscar', compact('horarios'));
-}
-
-
+        return view('horarios.alumnofiltrado', compact('alumnosFiltrados'));
+    }
 }
 
 

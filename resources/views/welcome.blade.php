@@ -18,7 +18,6 @@
   </div>
 </nav>
 
-
 <style>
   body {
       background-image: url("{{ asset('img/USM.jpg') }}");

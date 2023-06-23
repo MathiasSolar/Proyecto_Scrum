@@ -3,6 +3,14 @@
 @section('content')
     <center><h1>Alumnos Reservados - {{ $horario->fecha }} - {{ $horario->hora_inicio }} a {{ $horario->hora_termino }}</h1></center>
 
+    <form action="{{ route('alumnos.filtrar') }}" method="GET" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="rut" class="form-control" placeholder="Ingrese el rut del alumno">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
+
+
     @if (count($reservas) > 0)
         <ul class="list-group">
             @foreach ($reservas as $reserva)
@@ -12,7 +20,6 @@
                     <strong>Apellido:</strong> {{ $reserva->Alumno->apellido }} <br>
                     <strong>Correo Electrónico:</strong> {{ $reserva->Alumno->correo_electronico }} <br>
                     <strong>Carrera:</strong> {{ $reserva->Alumno->carrera->nombre_carrera }} <br>
-
                     <strong>Asistencia:</strong>
                     @if ($reserva->asistencia === 'presente')
                         <span class="badge bg-success">Presente</span>
