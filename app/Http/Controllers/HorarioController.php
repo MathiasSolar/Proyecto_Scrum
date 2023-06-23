@@ -178,6 +178,16 @@ public function buscar(Request $request)
     return view('horarios.buscar', compact('horarios'));
 }
 
+public function filtrarAlumnos(Request $request)
+    {
+        $rut = $request->input('rut');
+
+        // Obtener los alumnos filtrados por rut
+        $alumnosFiltrados = Alumno::where('rut', 'like', '%' . $rut . '%')->get();
+
+        return view('horarios.alumnofiltrado', compact('alumnosFiltrados'));
+    }
+
 
 }
 
