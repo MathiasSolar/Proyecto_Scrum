@@ -37,11 +37,3 @@ Route::get('/alumnos/filtrar', [HorarioController::class, 'filtrarAlumnos'])->na
 
 
 
-
-
-
-
-
-
-
-
