@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use App\Models\Alumno;
+use App\Models\Ayudante;
 use App\Models\Carrera;
 use App\Models\Horario;
 use App\Models\Reserva;
@@ -52,8 +53,8 @@ class HorarioController extends Controller
         }
 
         $reserva = new Reserva;
-        $reserva->fecha_reserva = "";
-        $reserva->asistencia = "";
+        $reserva->fecha_reserva = Carbon::now()->toDateString();
+        $reserva->asistencia = "ausente";
         $reserva->horarios_id = $idHorario;
         $reserva->alumnos_rut = $request->get('rut');
         $reserva->ayudantes_rut = "11.111.111-1";
@@ -124,22 +125,27 @@ class HorarioController extends Controller
     public function modificarReserva($reservaId)
     {
         $reserva = Reserva::findOrFail($reservaId);
-        $carreras = Carrera::all(); // Obtener todas las carreras (o tu lógica para obtener las carreras)
+        $carreras = Carrera::all(); 
         return view('horarios.modificar_reserva', compact('reserva', 'carreras'));
     }
 
-    public function actualizarReserva(Request $request, $reservaId)
+    public function actualizarReserva(Request $request, $id)
     {
-        $reserva = Reserva::findOrFail($reservaId);
-        $reserva->asistencia = $request->input('asistencia');
-        $alumno = Alumno::where('rut', $request->input('rut'))->first();
-        if ($alumno) {
-            $reserva->alumnos_rut = $request->input('rut');
-            $reserva->save();
-        }
-
-        return redirect()->route('horarios.alumnosReservados', $reserva->horarios_id)
-            ->with('success', 'Reserva actualizada exitosamente');
+        $reserva = Reserva::findOrFail($id);
+        $reserva->alumnos_rut = $request->rut;
+    
+        // Obtener el alumno asociado a la reserva
+        $alumno = $reserva->Alumno;
+        $alumno->nombre = $request->nombre;
+        $alumno->apellido = $request->apellido;
+        $alumno->correo_electronico = $request->email;
+        $alumno->carreras_codigo_carrera = $request->carrera;
+        $alumno->save();
+    
+        $reserva->asistencia = $request->asistencia;
+        $reserva->save();
+    
+        return redirect()->route('horarios.alumnosReservados', $reserva->Horario->id)->with('success', 'Reserva actualizada correctamente.');
     }
 
     public function eliminarReserva(Reserva $reserva)
@@ -166,6 +172,35 @@ class HorarioController extends Controller
 
         return view('horarios.alumnofiltrado', compact('alumnosFiltrados'));
     }
+
+    public function gestorAyudantes()
+    {
+        $ayudantes = Ayudante::all();
+        $carreras = Carrera::all();
+
+        return view('ayudantes.gestor_ayudantes', compact('ayudantes','carreras'));
+    }
+
+
+    public function cambiarEstado($rut, $estado)
+    {
+        $ayudante = Ayudante::where('rut', $rut)->first();
+
+        if (!$ayudante) {
+            return redirect()->back()->with('error', 'Ayudante no encontrado.');
+        }
+
+        // Verificar si el estado es válido
+        if ($estado === 'activo' || $estado === 'inhabilitado') {
+            $ayudante->estado = $estado;
+            $ayudante->save();
+
+            return redirect()->route('ayudantes.gestor_ayudantes')->with('success', 'Estado del ayudante actualizado correctamente.');
+        } else {
+            return redirect()->back()->with('error', 'Estado no válido.');
+        }
+    }
+
 }
 
 

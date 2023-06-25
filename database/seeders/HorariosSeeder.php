@@ -60,9 +60,9 @@ class HorariosSeeder extends Seeder
             'rut'=>'11.111.111-1',
             'nombre'=>'prueba',
             'apellido'=>'prueba2',
-            'constraseña'=>123,
             'correo_electronico'=>'prueba@usm.cl',
-            'codigo_carrera'=>15462,
+            'estado'=>'activo',
+            'carreras_codigo_carrera'=>15110,
         ]);
 
     }

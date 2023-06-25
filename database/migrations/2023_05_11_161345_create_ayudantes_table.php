@@ -11,12 +11,13 @@ class CreateAyudantesTable extends Migration
             $table->string('rut')->primary();
             $table->string('nombre');
             $table->string('apellido')->nullable();
-            $table->string('constraseña');
+            $table->string('contraseña')->nullable();
             $table->string('correo_electronico')->unique();
-            $table->unsignedBigInteger('codigo_carrera');
+            $table->string('estado')->default('activo');
+            $table->unsignedBigInteger('carreras_codigo_carrera');
             $table->timestamps();
 
-            $table->foreign('codigo_carrera')->references('codigo_carrera')->on('carreras')->onDelete('cascade');
+            $table->foreign('carreras_codigo_carrera')->references('codigo_carrera')->on('carreras')->onDelete('cascade');
         });
     }
 

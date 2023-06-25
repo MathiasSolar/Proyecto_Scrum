@@ -12,6 +12,7 @@
     <form class="d-flex" role="search">
       <div>
       <a href="{{ route('horarios.index') }}" class="btn btn-outline-light btn-lg">Reservar</a>
+      <a href="{{ route('ayudantes.gestor_ayudantes') }}" class="btn btn-outline-light btn-lg">Ver Ayudantes</a>
       </div>
     
     </form>

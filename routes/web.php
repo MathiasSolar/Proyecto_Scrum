@@ -32,8 +32,8 @@ Route::put('/horarios/{reserva}/actualizar-reserva', [HorarioController::class, 
 Route::delete('/horarios/eliminar-reserva/{reserva}', [HorarioController::class, 'eliminarReserva'])->name('horarios.eliminarReserva');
 Route::get('/horarios/buscar', [HorarioController::class, 'buscar'])->name('horarios.buscar');
 Route::get('/alumnos/filtrar', [HorarioController::class, 'filtrarAlumnos'])->name('alumnos.filtrar');
-
-
-
+Route::get('/ayudantes/gestor-ayudantes',[HorarioController::class, 'gestorAyudantes'])->name('ayudantes.gestor_ayudantes');
+Route::post('/ayudantes/agregar', [HorarioController::class, 'agregarAyudante'])->name('ayudantes.agregar');
+Route::put('/ayudantes/{ayudante}/cambiar-estado', [HorarioController::class, 'cambiarEstado'])->name('ayudantes.cambiarEstado');
 
 
