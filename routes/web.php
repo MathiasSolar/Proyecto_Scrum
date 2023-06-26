@@ -1,19 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HorasController;
 use App\Http\Controllers\HorarioController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,8 +20,6 @@ Route::put('/horarios/{reserva}/actualizar-reserva', [HorarioController::class, 
 Route::delete('/horarios/eliminar-reserva/{reserva}', [HorarioController::class, 'eliminarReserva'])->name('horarios.eliminarReserva');
 Route::get('/horarios/buscar', [HorarioController::class, 'buscar'])->name('horarios.buscar');
 Route::get('/alumnos/filtrar', [HorarioController::class, 'filtrarAlumnos'])->name('alumnos.filtrar');
-Route::get('/ayudantes/gestor-ayudantes',[HorarioController::class, 'gestorAyudantes'])->name('ayudantes.gestor_ayudantes');
-Route::post('/ayudantes/agregar', [HorarioController::class, 'agregarAyudante'])->name('ayudantes.agregar');
-Route::put('/ayudantes/{ayudante}/cambiar-estado', [HorarioController::class, 'cambiarEstado'])->name('ayudantes.cambiarEstado');
-
+Route::get('/ayudantes/gestor-ayudantes', [HorarioController::class, 'gestorAyudantes'])->name('ayudantes.gestor_ayudantes');
+Route::post('/ayudantes/{rut}/cambiar-estado/{estado}', [HorarioController::class, 'cambiarEstado'])->name('ayudantes.cambiarEstado');
 

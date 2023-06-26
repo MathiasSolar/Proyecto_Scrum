@@ -65,6 +65,15 @@ class HorariosSeeder extends Seeder
             'carreras_codigo_carrera'=>15110,
         ]);
 
+        DB::table('ayudantes')->insert([
+            'rut'=>'22.222.222-2',
+            'nombre'=>'nombre',
+            'apellido'=>'apellido',
+            'correo_electronico'=>'prueba2@usm.cl',
+            'estado'=>'inhabilitado',
+            'carreras_codigo_carrera'=>15110,
+        ]);
+
     }
 
 

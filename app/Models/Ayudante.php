@@ -15,6 +15,7 @@ class Ayudante extends Model
         'apellido',
         'correo_electronico',
         'contraseña',
+        'estado',
         'carreras_codigo_carrera',
     ];
 
