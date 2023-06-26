@@ -212,18 +212,13 @@ public function guardarAyudante(Request $request)
     return redirect()->route('ayudantes.gestor_ayudantes')->with('success', 'Ayudante añadido correctamente.');
 }
 
-public function cambiarEstado($rut, $estado)
+public function cambiarEstado($nombre, $estado)
 {
-    // Buscar al ayudante por su rut
-    $ayudante = Ayudante::where('nombre', $rut)->first();
+    $ayudante = Ayudante::where('nombre', $nombre)->first();
 
-    // Verificar si se encontró el ayudante
-
-        // Validar el estado proporcionado
             $ayudante->estado = $estado;
             $ayudante->save();
             return redirect()->route('ayudantes.gestor_ayudantes')->with('success', 'Estado del ayudante cambiado correctamente');
-
 }
 
 }

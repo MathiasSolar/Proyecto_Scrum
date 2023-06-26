@@ -6,7 +6,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Rut</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Correo Electrónico</th>
@@ -18,7 +17,6 @@
         <tbody>
         @foreach ($ayudantes as $ayudante)
     <tr>
-        <td>{{ $ayudante->rut }}</td>
         <td>{{ $ayudante->nombre }}</td>
         <td>{{ $ayudante->apellido }}</td>
         <td>{{ $ayudante->correo_electronico }}</td>

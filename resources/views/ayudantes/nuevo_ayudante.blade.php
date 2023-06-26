@@ -46,11 +46,8 @@
       background-size: cover;
       background-position: center;
       height: 100vh;
-      color: white;
-      body {
-  color: #FFFFFF;
-}
-
+      
+      
   }
 </style>
 @endsection
