@@ -27,7 +27,7 @@
             @if ($ayudante->estado === 'activo')
                 Activo
                 <td>
-                <form action="{{ route('ayudantes.cambiarEstado', ['rut' => $ayudante->rut, 'estado' => 'inhabilitado']) }}" method="POST">
+                <form action="{{ route('ayudantes.cambiarEstado', ['nombre' => $ayudante->nombre, 'estado' => 'inhabilitado']) }}" method="POST">
                     @csrf
                     @method('POST')
                     <button type="submit" class="btn btn-danger">Inhabilitar</button>
@@ -36,7 +36,7 @@
             @else
                 Inhabilitado
                 <td>
-                <form action="{{ route('ayudantes.cambiarEstado', ['rut' => $ayudante->rut, 'estado' => 'activo']) }}" method="POST">
+                <form action="{{ route('ayudantes.cambiarEstado', ['nombre' => $ayudante->nombre, 'estado' => 'activo']) }}" method="POST">
                     @csrf
                     @method('POST')
                     <button type="submit" class="btn btn-success">Activar</button>

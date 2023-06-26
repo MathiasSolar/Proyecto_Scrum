@@ -24,9 +24,7 @@ Route::get('/ayudantes/gestor-ayudantes', [HorarioController::class, 'gestorAyud
 Route::get('/ayudantes/nuevo-ayudante', [HorarioController::class, 'gestorAyudantes'])->name('ayudantes.nuevo_ayudante');
 Route::post('/ayudantes/guardar-ayudante', [HorarioController::class, 'guardarAyudante'])->name('ayudantes.guardar_ayudante');
 Route::get('/ayudantes/nuevo-ayudante', [HorarioController::class, 'nuevoAyudante'])->name('ayudantes.nuevo_ayudante');
-
-
-Route::post('/ayudantes/{rut}/cambiar-estado/{estado}', [HorarioController::class, 'cambiarEstado'])->name('ayudantes.cambiarEstado');
+Route::post('/ayudantes/{nombre}/cambiar-estado/{estado}', [HorarioController::class, 'cambiarEstado'])->name('ayudantes.cambiarEstado');
 
 
 
