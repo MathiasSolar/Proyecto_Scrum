@@ -182,28 +182,6 @@ class HorarioController extends Controller
     }
 
 
-public function cambiarEstado($rut, $estado)
-{
-    // Buscar al ayudante por su rut
-    $ayudante = Ayudante::where('rut', $rut)->first();
-
-    // Verificar si se encontró el ayudante
-    if ($ayudante) {
-        // Validar el estado proporcionado
-        if ($estado === 'activo' || $estado === 'inhabilitado') {
-            $ayudante->estado = $estado;
-            $ayudante->save();
-            return redirect()->route('ayudantes.gestor_ayudantes')->with('success', 'Estado del ayudante cambiado correctamente');
-        } else {
-            // Estado no válido
-            return redirect()->back()->with('error', 'Estado no válido.');
-        }
-    } else {
-        // No se encontró el ayudante
-        return redirect()->back()->with('error', 'Ayudante no encontrado.');
-    }
-}
-
 
     public function nuevoAyudante()
 {
@@ -234,6 +212,27 @@ public function guardarAyudante(Request $request)
     return redirect()->route('ayudantes.gestor_ayudantes')->with('success', 'Ayudante añadido correctamente.');
 }
 
+public function cambiarEstado($rut, $estado)
+{
+    // Buscar al ayudante por su rut
+    $ayudante = Ayudante::where('rut', $rut)->first();
+
+    // Verificar si se encontró el ayudante
+    if ($ayudante) {
+        // Validar el estado proporcionado
+        if ($estado === 'activo' || $estado === 'inhabilitado') {
+            $ayudante->estado = $estado;
+            $ayudante->save();
+            return redirect()->route('ayudantes.gestor_ayudantes')->with('success', 'Estado del ayudante cambiado correctamente');
+        } else {
+            // Estado no válido
+            return redirect()->back()->with('error', 'Estado no válido.');
+        }
+    } else {
+        // No se encontró el ayudante
+        return redirect()->back()->with('error', 'Ayudante no encontrado.');
+    }
+}
 
 }
 

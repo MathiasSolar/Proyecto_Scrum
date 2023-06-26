@@ -31,3 +31,5 @@ Route::post('/ayudantes/{rut}/cambiar-estado/{estado}', [HorarioController::clas
 
 
 
+
+
