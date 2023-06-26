@@ -182,26 +182,60 @@ class HorarioController extends Controller
     }
 
 
-    public function cambiarEstado($rut, $estado)
-    {
-        // Buscar al ayudante por su rut
-        $ayudante = Ayudante::where('rut', $rut)->first();
+public function cambiarEstado($rut, $estado)
+{
+    // Buscar al ayudante por su rut
+    $ayudante = Ayudante::where('rut', $rut)->first();
 
-        // Verificar si se encontró el ayudante
-        if ($ayudante) {
-            // Validar el estado proporcionado
-            if ($estado === 'activo' || $estado === 'inhabilitado') {
-                $ayudante->estado = $estado;
-                $ayudante->save();
-                return redirect()->route('ayudantes.gestor_ayudantes')->with('success', 'Estado del ayudante cambiado correctamente');
-            } else {
-                // Estado no válido
-                return redirect()->back()->with('error', 'Estado no válido.');
-            }
+    // Verificar si se encontró el ayudante
+    if ($ayudante) {
+        // Validar el estado proporcionado
+        if ($estado === 'activo' || $estado === 'inhabilitado') {
+            $ayudante->estado = $estado;
+            $ayudante->save();
+            return redirect()->route('ayudantes.gestor_ayudantes')->with('success', 'Estado del ayudante cambiado correctamente');
         } else {
-            // No se encontró el ayudante
-            return redirect()->back()->with('error', 'Ayudante no encontrado.');
+            // Estado no válido
+            return redirect()->back()->with('error', 'Estado no válido.');
         }
+    } else {
+        // No se encontró el ayudante
+        return redirect()->back()->with('error', 'Ayudante no encontrado.');
     }
+}
+
+
+    public function nuevoAyudante()
+{
+    $carreras = Carrera::all();
+    return view('ayudantes.nuevo_ayudante', compact('carreras'));
+}
+
+
+public function guardarAyudante(Request $request)
+{
+    $request->validate([
+        'rut' => 'required',
+        'nombre' => 'required',
+        'apellido' => 'required',
+        'email' => 'required|email',
+        'carrera' => 'required',
+    ]);
+
+    $ayudante = new Ayudante;
+    $ayudante->rut = $request->get('rut');
+    $ayudante->nombre = $request->get('nombre');
+    $ayudante->apellido = $request->get('apellido');
+    $ayudante->correo_electronico = $request->get('email');
+    $ayudante->carreras_codigo_carrera = $request->get('carrera');
+    $ayudante->estado = 'activo';
+    $ayudante->save();
+
+    return redirect()->route('ayudantes.gestor_ayudantes')->with('success', 'Ayudante añadido correctamente.');
+}
+
 
 }
+
+
+

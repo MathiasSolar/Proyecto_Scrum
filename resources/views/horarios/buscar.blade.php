@@ -54,6 +54,15 @@
             <h2 class="text-center">El horario que ha buscado no existe.</h2>
         @endif
     </div>
+    <style>
+  body {
+      background-image: url("{{ asset('img/ejemplogim.jpg') }}");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+  }
+</style>
 @endsection
 
 

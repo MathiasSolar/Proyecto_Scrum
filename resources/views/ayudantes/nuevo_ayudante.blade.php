@@ -3,7 +3,7 @@
 @section('content')
     <center><h1>Añadir Ayudante</h1></center>
 
-    <form action="{{ route() }}" method="POST">
+    <form action="{{ route('ayudantes.guardar_ayudante') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="rut">Rut:</label>
@@ -38,3 +38,4 @@
             <button type="submit" class="btn btn-primary">Añadir</button>
         </div>
     </form>
+@endsection

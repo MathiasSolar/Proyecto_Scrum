@@ -45,5 +45,15 @@
     @else
         <p>No hay alumnos reservados para este horario.</p>
     @endif
+    <style>
+        
+  body {
+      background-image: url("{{ asset('img/ejemplogim.jpg') }}");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+  }
+</style>
 @endsection
 

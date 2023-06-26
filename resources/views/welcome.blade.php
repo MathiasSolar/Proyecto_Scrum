@@ -21,7 +21,7 @@
 
 <style>
   body {
-      background-image: url("{{ asset('img/USM.jpg') }}");
+      background-image: url("{{ asset('img/ejemplogim.jpg') }}");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
