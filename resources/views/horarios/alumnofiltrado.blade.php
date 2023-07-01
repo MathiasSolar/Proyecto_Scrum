@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Alumno Reservado</h1>
+    <center><h1>Alumno Reservado</h1></center>
     @if (count($alumnosFiltrados) > 0)
         <ul class="list-group">
             @foreach ($alumnosFiltrados as $alumno)
@@ -21,11 +21,17 @@
 
     <style>
   body {
-      background-image: url("{{ asset('img/ejemplogim.jpg') }}");
+      background-image: url("{{ asset('img/fondoGym.jpg') }}");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
       height: 100vh;
+      color: lightgray;
+  }
+
+  h1{
+    color: blue;
+    font-family: "Times New Roman", Times, serif;
   }
 </style>
 @endsection

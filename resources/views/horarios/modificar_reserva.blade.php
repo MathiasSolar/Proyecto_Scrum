@@ -51,12 +51,18 @@
     </form>
 
     <style>
-  body {
-      background-image: url("{{ asset('img/ejemplogim.jpg') }}");
+ body {
+      background-image: url("{{ asset('img/fondoGym.jpg') }}");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
       height: 100vh;
+      color: lightgray;
+  }
+
+  h1{
+    color: blue;
+    font-family: "Times New Roman", Times, serif;
   }
 </style>
 @endsection

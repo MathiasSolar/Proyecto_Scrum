@@ -1,7 +1,8 @@
 
 h1 {
     text-align: center;
-    color: blue;
+    color: rgb(62, 62, 89);
+    font-family: "Times New Roman", Times, serif;
   }
   
   .form-group label {
@@ -47,4 +48,5 @@ h1 {
   .text-center {
     text-align: center;
   }
+  
   

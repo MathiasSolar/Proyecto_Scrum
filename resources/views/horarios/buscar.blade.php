@@ -62,6 +62,10 @@
       background-position: center;
       height: 100vh;
   }
+  
+  h1{
+    font-family: "Times New Roman", Times, serif;
+  }
 </style>
 @endsection
 

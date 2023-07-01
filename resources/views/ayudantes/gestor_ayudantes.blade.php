@@ -52,4 +52,24 @@
 
 
     </div>
+    <style>
+
+body {
+      background-image: url("{{ asset('img/ejemplogim.jpg') }}");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+  }
+
+  h1{
+    font-family: "Times New Roman", Times, serif;
+  }
+
+  .table{
+    background-color: white;
+  }
+
+    </style>
+
 @endsection
